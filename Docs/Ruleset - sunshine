@@ -1,0 +1,119 @@
+Sunshine scalping
+compatible with 5m, 15m, 30m charts
+
+Rules:
+    tools:
+    - super trend (period-7,multiplayer-3)
+    - EMA (10, 50, 100)
+    - Heikin Ahi (in addition to normal candlesticks)
+    - MACD (fast-12, slow-26, signal-9)
+    - sunshine (period1-20, period2-50, period3-100)
+    Entry:
+        == for a long entry, chart's state must be compliant for all following conditions:
+        - 10p EMA is above 50p EMA which is above 100p EMA - indicating up trend
+        - super trend band is bellow the chart - agreeing with the up trend
+        - super trend value is not below the 100p EMA (in this specific point)
+        - current candle closed above the 10p EMA while at least both the
+            previous candles closed below it
+        - current heikin ashi candle is green
+        - MACD is positive and above the signal line
+        - sunshine value is no less than 0.5
+        open position - with stop loss at the average point between the 10p and 50p EMA,
+            reward to risk is 1.5
+
+        == for a long entry, chart's state must be compliant for all following conditions:
+        - 10p EMA is below 50p EMA which is below 100p EMA - indicating down trend
+        - super trend band is above the chart - agreeing with the down trend
+        - super trend value is not above the 100p EMA (in this specific point)
+        - current candle closed below the 10p EMA while at least both the
+            previous candles closed above it
+        - current heikin ashi candle is red
+        - MACD is negative and below the signal line
+        - sunshine value is no less than 0.5
+        open position - with stop loss at the average point between the 10p and 50p EMA,
+            reward to risk is 1.5
+
+    Closing:
+        == close the position as soon as a candle closes below (for long) or
+            above (for short) the stop loss
+
+        == if the priced closed above (for long) or below (for short) the
+            take profit, you may close the position and take the profit.
+            But, trend riding can be a done to make profit larger if done
+            wisely.
+
+            == for a bullish trend ride (in case of a winning long position):
+            - MACD is positive and above the signal line
+
+            == for a bearish trend ride (in case of a winning short position):
+            - MACD is negative and below the signal line
+
+            as if we are opening a new position we create a new stop loss
+            and take profit levels.
+
+            (mainly for a computer) stop loss level is best placed between the current
+            close price and the previous position's open value, with the ratio between the
+            distances being inverse of the distance [the lowest price from open to win]to
+            [open value] divided by the distance [the lowest price from open to win] to
+            [stop loss] (so that the closer the price was to hitting the stop loss - the
+            less room we give it to keep riding the trend)
+            - a human trading this strategy can place the new stop loss between the current
+            close price and the previous position's open value "eyeballing" it to the said
+            level
+            -reward to risk will now be 1
+
+Every chart and its revenue in 30 days of activity - tested on 5m, 15m, 30m charts:
+CADJPY - 1.075024339720352 +
+NZDUSD - 1.0610615100909668 --
+USDNOK - 1.0543117870963574 -
+EURCAD - 1.0517630315419841 +
+NZDJPY - 1.0506363777026777 +
+GBPNOK - 1.0465847331354807
+DKKNOK - 1.045388671338817
+GBPJPY - 1.0407286867864527
+EURZAR - 1.036437049167357 +
+GBPCAD - 1.0305933898463528 -
+SEKNOK - 1.0281183363306787 -
+EURNOK - 1.0273113526419382
+USDCAD - 1.0269655257794033 -
+SGDJPY - 1.0255878882838665
+AUDUSD - 1.0249491111800935 -
+GBPAUD - 1.0242040657488392
+USDSEK - 1.02234585513069
+CADCHF - 1.0222530587194125
+CHFSEK - 1.0170378026693783
+CHFJPY - 1.0139668382042037
+EURUSD - 1.0139076452855624
+NZDCHF - 1.0137719931052094
+NZDCAD - 1.012871074400532 --
+USDDKK - 1.0124476539198712 --
+GBPUSD - 1.0103373794007722 +
+EURSGD - 1.0083864795690567
+AUDCHF - 1.0083127481734229
+USDMXN - 1.0082076837274683
+GBPNZD - 1.0079430023824067
+GBPCHF - 1.0078924068368533
+USDZAR - 1.007312480678763 -
+GBPDKK - 1.0070494591183208
+EURSEK - 1.0070315032817183 -
+EURGBP - 1.0061452456362754
+EURJPY - 1.0056564808544322 -
+AUDNZD - 1.004970982625932 -
+EURPLN - 1.0039122441382564
+USDSGD - 1.0037817266067552 -
+CHFDKK - 1.0027658779936137
+GBPZAR - 1.000038424048164
+EURNZD - 1.0009600379785741 -
+USDCNH - 1.0
+AUDSGD - 1.0
+EURDKK - 1.0
+AUDCAD - 1.0
+EURCHF - 1.0
+USDHKD - 0.9998614771694907
+USDPLN - 0.9998523767384547
+GBPSGD - 0.9991712099833663
+GBPSEK - 0.9974558040152371
+USDCHF - 0.996477128338599
+EURAUD - 0.998071191102134
+
+Total revenue in 30 days of activity: 2.481720754673818
