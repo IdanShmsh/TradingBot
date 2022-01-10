@@ -29,7 +29,7 @@ def start_local_server():
     port = 1000
     while True:
         try:
-            serv.bind(('192.168.1.140', port))
+            serv.bind(('MY_IP', port))
             break
         except:
             port += 1
