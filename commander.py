@@ -11,7 +11,7 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 connected = False
 for i in range(1000, 99999):
     try:
-        sock.connect(('192.168.1.140', i))
+        sock.connect(('MY_ADDRESS', i))
         connected = True
         break
     except:
